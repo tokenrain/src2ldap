@@ -1,0 +1,60 @@
+{
+  "automountMap" : [
+    {
+      "name": "auto.master"
+    },
+    {
+      "name": "auto.a"
+    },
+    {
+      "name": "auto.u"
+    }
+  ],
+  "automount": [
+    {
+      "name": "/net",
+      "map" : "auto.master",
+      "info": "/etc/auto.net"
+    },
+    {
+      "name": "/a",
+      "map" : "auto.master",
+      "info": "auto.a"
+    },
+    {
+      "name": "/u",
+      "map" : "auto.master",
+      "info": "auto.u"
+    },
+    {
+      "name": "apt",
+      "map" : "auto.a",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid repo.acmewidgets.name:/zfspool/repos/apt"
+    },
+    {
+      "name": "binfiles",
+      "map" : "auto.a",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid repo.acmewidgets.name:/zfspool/repos/binfiles"
+    },
+    {
+      "name": "yum",
+      "map" : "auto.a",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid repo.acmewidgets.name:/zfspool/repos/yum"
+    },
+    {
+      "name": "user11110",
+      "map" : "auto.u",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid homes.acmewidgets.name:/export/home/user11110"
+    },
+    {
+      "name": "user11111",
+      "map" : "auto.u",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid homes.acmewidgets.name:/export/home/user11111"
+    },
+    {
+      "name": "user11112",
+      "map" : "auto.u",
+      "info": "-fstype=nfs,rw,hard,intr,nodev,exec,nosuid homes.acmewidgets.name:/export/home/user11112"
+    }
+  ]
+}

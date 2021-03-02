@@ -1,0 +1,102 @@
+{
+  "user": {
+    "objectClass": [
+      "top",
+      "posixAccount"
+    ],
+    "filter": [ "objectClass", "posixAccount" ],
+    "dn": "uid",
+    "must": [
+      "cn",
+      "uid",
+      "uidNumber",
+      "gidNumber",
+      "homeDirectory"
+    ],
+    "may": [
+      "userPassword",
+      "loginShell",
+      "gecos",
+      "description"
+    ]
+  },
+  "group": {
+    "objectClass": [
+      "top",
+      "groupOfNames",
+      "posixGroup"
+    ],
+    "filter": [ "objectClass", "posixGroup" ],
+    "dn": "cn",
+    "must": [
+      "cn",
+      "gidNumber"
+    ],
+    "may": [
+      "userPassword",
+      "@memberUid",
+      "description"
+    ]
+  },
+  "services": {
+    "objectClass": [
+      "top",
+      "ipService"
+    ],
+    "filter": [ "objectClass", "ipService" ],
+    "dn": "cn",
+    "must": [ 
+      "@cn",
+      "ipServicePort",
+      "@ipServiceProtocol"
+    ],
+    "may": [
+      "description"
+    ]
+  },
+  "netgroup": {
+    "objectClass": [
+      "top",
+      "nisNetgroup"
+    ],
+    "filter": [ "objectClass", "nisNetgroup" ],
+    "dn": "cn",
+    "must": [
+      "cn"
+    ],
+    "may": [
+      "@nisNetgroupTriple",
+      "@memberNisNetgroup",
+      "description"
+    ]
+  },
+  "automountMap": {
+    "objectClass": [
+      "top",
+      "automountMap"
+    ],
+    "filter": [ "objectClass", "automountMap" ],
+    "dn": "automountMapName",
+    "must": [
+      "automountMapName"
+    ],
+    "may": [
+      "description"
+    ]
+  },
+  "automount": {
+    "objectClass": [
+      "top",
+      "automount"
+    ],
+    "filter": [ "objectClass", "automount" ],
+    "dn": [ "automountKey", "automountMapName" ],
+    "must": [
+      "automountKey",
+      "automountInformation"
+    ],
+    "may": [
+      "description"
+    ]
+  }
+}

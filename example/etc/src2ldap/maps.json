@@ -1,0 +1,71 @@
+{
+    "_default": {
+        "schema": "/etc/src2ldap/rfc2307.json",
+        "max_changes": 32
+    },
+    "users": {
+       "ldap"  : "user",
+       "file"  : "/var/lib/src2ldap/files/users.json",
+       "base"  : "ou=people,dc=acmewidgets,dc=name",
+       "cim"   : true,
+       "mappings": {
+           "name"   : "uid",
+           "uid"    : "uidNumber",
+           "gid"    : "gidNumber",
+           "gecos"  : "gecos",
+           "homedir": "homeDirectory",
+           "shell"  : "loginShell"
+       },
+       "mappings_create": {
+           "name": "cn"
+       }
+    },
+    "groups": {
+       "ldap": "group",
+       "file": "/var/lib/src2ldap/files/groups.json",
+       "base": "ou=group,dc=acmewidgets,dc=name",
+        "mappings": {
+            "name"   : "cn",
+            "gid"    : "gidNumber",
+            "members": "memberUid"
+        }
+    },
+    "services": {
+       "ldap": "services",
+       "file": "/var/lib/src2ldap/files/services.json",
+       "base": "ou=services,dc=acmewidgets,dc=name",
+        "mappings": {
+            "name"       : "cn",
+            "port"       : "ipServicePort",
+            "protocols"  : "ipServiceProtocol",
+            "description": "description"
+        },
+        "mappings_append": {
+            "aliases"  : "cn"
+        }
+    },
+    "automountMap": {
+       "ldap": "automountMap",
+       "file": "/var/lib/src2ldap/files/automount.json",
+       "key" : "automountMap",
+       "base": "ou=automount,dc=dc1,dc=acmewidgets,dc=name",
+        "mappings": {
+            "name": "automountMapName"
+        }
+    },
+    "automount": {
+       "ldap": "automount",
+       "file": "/var/lib/src2ldap/files/automount.json",
+       "key" : "automount",
+       "base": "ou=automount,dc=dc1,dc=acmewidgets,dc=name",
+       "inc" : [ "automountMap" ],
+       "mappings": {
+            "name" : "automountKey",
+            "map"  : "automountMapName",
+            "info" : "automountInformation"
+        },
+        "mappings_exclude": [
+            "automountMapName"
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "ldap_hosts"    : [ "ldap1.acmewidgets.name", "ldap1.acmewidgets.name" ],
+  "ldap_port"     : 636,
+  "ldap_creds"    : "/etc/src2ldap/ldap_creds.json",
+  "start_tls"     : false,
+  "tls_noverify"  : false,
+  "map_config"    : "/etc/src2ldap/maps.json",
+  "maps"          : [ "@all" ],
+  "log_dir"       : "/var/log/src2ldap"
+  "exact"         : false,
+  "noop"          : false,
+  "force_tty"     : false,
+  "debug"         : false
+}

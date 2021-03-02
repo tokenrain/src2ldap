@@ -1,0 +1,62 @@
+[
+  {
+    "name": "group11110",
+    "gid" : 11110,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11111",
+    "gid" : 11111,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11112",
+    "gid" : 11112,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11113",
+    "gid" : 11113,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11114",
+    "gid" : 11114,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11115",
+    "gid" : 11115,
+    "members": [
+    ]
+  },
+  {
+    "name": "group11116",
+    "gid" : 11116,
+    "members": [
+    ]
+  },
+  {
+    "name": "group21110",
+    "gid" : 21110,
+    "members": [
+      "user11110",
+      "user11111",
+      "user11112"    
+    ]
+  },
+  {
+    "name": "group21111",
+    "gid" : 21111,
+    "members": [
+      "user11113",
+      "user11114",
+      "user11115"
+    ]
+  }
+]

@@ -1,0 +1,115 @@
+#!/company/bin/ruby
+
+$LOAD_PATH.unshift '/home/mselby/git/soft/src2ldap/lib'
+
+require 'json'
+require 'ruby-getoptions'
+require 'src2ldap'
+
+$VERBOSE = nil
+
+###################
+# options parsing #
+###################
+
+oh = {
+  'config=s'        => :config,
+  'ldap_hosts=s'    => :ldap_hosts,
+  'ldap_port=i'     => :ldap_port,
+  'ldap_user=s'     => :ldap_user,
+  'ldap_pass=s'     => :ldap_pass,
+  'ldap_creds=s'    => :ldap_creds,
+  'start_tls'       => :start_tls,
+  'tls_noverify'    => :tls_verify,
+  'endpoint_user=s' => :endpoint_user,
+  'endpoint_pass=s' => :endpoint_pass,
+  'map_config=s'    => :map_config,
+  'maps=s'          => :maps,
+  'log_dir=s'       => :log_dir,
+  'exact'           => :exact,
+  'run'             => :run,
+  'noop'            => :noop,
+  'force_tty'       => :force_tty,
+  'debug'           => :debug,
+  'help'            => :help,
+}
+
+def usage(ec)
+  puts <<'EOF'
+
+Usage: src2ldap --config=<file.json> --run
+
+       src2ldap --ldap_hosts=<host1,host2,host3> \
+                --ldap_port=<#>                  \
+                --ldap_user=<string>             \
+                --ldap_pass=<string>             \
+                --ldap_creds=<file.json>         \
+                --start_tls                      \
+                --tls_noverify                   \
+                --endpoint_user=<string>         \
+                --endpoint_pass=<string>         \
+                --endpoint_creds=<file.json>     \
+                --map_config=<file.json>         \
+                --maps=<map1,map2,map3>          \
+                --log_dir=<dir>                  \
+                --exact                          \
+                --run                            \
+                --noop                           \
+                --force_tty                      \
+                --debug                          \
+                --help
+
+EOF
+  exit ec
+end
+
+options, = GetOptions.parse(ARGV, oh, fail_on_unknown: true)
+
+######################
+# options processing #
+######################
+
+# config file options that can be overridden by command line arguments
+OVER_OPTS = [:ldap_hosts, :ldap_port, :ldap_user, :ldap_pass, :ldap_creds,
+             :endpoint_user, :endpoint_pass, :endpoint_creds,
+             :start_tls, :tls_noverify, :map_config, :maps, :exact,
+             :log_dir, :force_tty, :debug, :noop].freeze
+
+# options whose scalar values get converted to arrays
+ARR_OPTS = [:ldap_hosts, :maps].freeze
+
+if options[:config]
+  config = JSON.parse(File.read(options[:config]))
+else
+  config = {}
+end
+
+# command line arguments override ones in the config file
+OVER_OPTS.each do |opt|
+  if options.key?(opt)
+    if ARR_OPTS.include?(opt)
+      config[opt] = options[opt].gsub(/\s+/, '').split(',')
+    else
+      config[opt] = options[opt]
+    end
+  end
+end
+
+usage(0) if options[:help]
+usage(1) if config.empty? || !options[:run]
+
+# We want all options keys to be symbols. Ones that come from options
+# file need to be converted.
+config = Hash[config.map { |k, v| [k.to_sym, v] }]
+
+########
+# main #
+########
+begin
+  src2ldap = Src2LDAP.new(config)
+rescue RuntimeError => e
+  STDERR.puts(e)
+  exit 1
+end
+
+exit src2ldap.run()

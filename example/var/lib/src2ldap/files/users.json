@@ -1,0 +1,50 @@
+[
+  {
+    "name"   : "user11110",
+    "uid"    : 11110,
+    "gid"    : 11110,
+    "gecos"  : "User 11110",
+    "homedir": "/home/user11110",
+    "shell"  : "/bin/bash"
+  },
+  {
+    "name"   : "user11111",
+    "uid"    : 11111,
+    "gid"    : 11111,
+    "gecos"  : "User 11111",
+    "homedir": "/home/user11111",
+    "shell"  : "/bin/bash"
+  },
+  {
+    "name"   : "user11112",
+    "uid"    : 11112,
+    "gid"    : 11112,
+    "gecos"  : "User 11112",
+    "homedir": "/home/user11112",
+    "shell"  : "/bin/bash"
+  },
+  {
+    "name"   : "user11113",
+    "uid"    : 11113,
+    "gid"    : 11113,
+    "gecos"  : "User 11113",
+    "homedir": "/home/user11113",
+    "shell"  : "/bin/bash"
+  },
+  {
+    "name"   : "user11114",
+    "uid"    : 11114,
+    "gid"    : 11114,
+    "gecos"  : "User 11114",
+    "homedir": "/home/user11114",
+    "shell"  : "/bin/bash"
+  },
+  {
+    "name"   : "user11115",
+    "uid"    : 11115,
+    "gid"    : 11115,
+    "gecos"  : "User 11115",
+    "homedir": "/home/user11115",
+    "shell"  : "/bin/bash"
+  },
+]

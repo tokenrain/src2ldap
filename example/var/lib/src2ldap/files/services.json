@@ -1,0 +1,26 @@
+[
+  {
+    "name": "able",
+    "port": 10020,
+    "protocols": [
+      "tcp",
+      "udp"
+    ],
+    "aliases": [
+      "cain"
+    ],
+    "description": "good and bad"
+  },
+  {
+    "name": "goliath",
+    "port": 10021,
+    "protocols": [
+      "tcp",
+      "udp"
+    ],
+    "aliases": [
+      "david"
+    ],
+   "description": "big and small"
+  }
+]
